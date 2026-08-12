@@ -5,11 +5,12 @@ import { openHome, signUp, logIn, addProductToCart } from '../../support/pages/h
 
 test.describe('SignUp and add product to the cart', () => {
   test('A new customer can register and log in', async ({ page }) => {
+    const user = buildDemoblazeUser();
 
     await openHome(page);
-    await signUp(page, buildDemoblazeUser().username, buildDemoblazeUser().password);
+    await signUp(page, user.username, user.password);
 
-    await logIn(page, buildDemoblazeUser().username, buildDemoblazeUser().password);
+    await logIn(page, user.username, user.password);
     await expect(page.getByRole('link', { name: 'Log out' })).toBeVisible();
   });
 
