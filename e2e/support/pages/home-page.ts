@@ -1,6 +1,6 @@
 import { expect, Page } from '@playwright/test';
 
-export const openHome = async (page: Page): Promise<void> => {
+export const openHome = async (page: Page)=> {
   await page.goto('https://www.demoblaze.com');
   await expect(page.locator('#nava')).toBeVisible();
 };
@@ -27,7 +27,7 @@ export const logIn = async (
   page: Page,
   username: string,
   password: string
-): Promise<void> => {
+) => {
   await page.getByRole('link', { name: 'Log in' }).click();
   await expect(page.locator('#logInModal')).toBeVisible();
   await page.locator('#loginusername').fill(username);
@@ -40,7 +40,7 @@ export const logIn = async (
 export const addProductToCart = async (
   page: Page,
   productName: string
-): Promise<void> => {
+) => {
   await page.getByRole('link', { name: productName, exact: true }).click();
   await expect(page.locator('.name')).toHaveText(productName);
 

@@ -15,7 +15,7 @@ export type OrderReceipt = {
   rawText: string;
 };
 
-export const openCart = async (page: Page): Promise<void> => {
+export const openCart = async (page: Page) => {
   await page.getByRole('link', { name: 'Cart', exact: true }).click();
   await expect(page).toHaveURL(/cart\.html/);
 };
@@ -23,7 +23,7 @@ export const openCart = async (page: Page): Promise<void> => {
 export const expectProductInCart = async (
   page: Page,
   productName: string
-): Promise<void> => {
+) => {
   await expect(page.locator('#tbodyid')).toContainText(productName);
   await expect(page.locator('#totalp')).not.toBeEmpty();
 };
@@ -31,7 +31,7 @@ export const expectProductInCart = async (
 export const completePurchase = async (
   page: Page,
   details: OrderDetails
-): Promise<OrderReceipt> => {
+) => {
   await page.getByRole('button', { name: 'Place Order' }).click();
   await expect(page.locator('#orderModal')).toBeVisible();
 
